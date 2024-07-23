@@ -3,27 +3,30 @@
 <head>
     <title>Tabel Data</title>
     <style>
-        /* Style untuk tabel */
+        /* Style untuk tabel (menggunakan viewport units) */
         table {
-            width: 100%;
+            width: 100vw; 
+            max-width: 100%; 
             border-collapse: collapse;
             font-family: Arial, sans-serif;
             background-color: #333;
             color: white;
             margin-bottom: 20px;
+            table-layout: fixed; 
+        }
+
+        th, td {
+            padding: 0.5vw; 
+            text-align: center;
+            border: 1px solid #555;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            white-space: nowrap; 
         }
 
         th {
             background-color: #555;
-            padding: 10px;
-            text-align: center;
             font-weight: bold;
-        }
-
-        td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #555;
         }
 
         tr:nth-child(even) {
@@ -32,50 +35,31 @@
 
         /* Style untuk kolom yang aktif (diklik) */
         .active-column {
-            background-color: #777; /* Warna latar belakang kolom aktif */
+            background-color: #777; 
         }
 
-        /* Style untuk pilihan warna */
+        /* Style untuk pilihan warna (menggunakan flexbox) */
         .color-picker {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            gap: 5px;
-            flex-wrap: wrap; /* Pilihan warna akan pindah baris jika tidak muat */
+            gap: 0.5vw; 
         }
 
         .color-option {
-            width: 20px;
-            height: 20px;
+            width: 2vw; 
+            height: 2vw;
             border: 1px solid #555;
             cursor: pointer;
-            margin-bottom: 5px; /* Tambahkan margin bawah untuk jarak antara baris pilihan warna */
-        }
-
-        /* Media query untuk perangkat mobile */
-        @media (max-width: 768px) {
-            table {
-                font-size: 12px;
-            }
-
-            th, td {
-                padding: 5px;
-            }
-
-            .color-picker {
-                justify-content: flex-start; /* Rata kiri */
-            }
-        }
-
-        /* Opsional: Tambahkan overflow-x: auto untuk membuat tabel horizontal scrollable */
-        .table-container {
-            overflow-x: auto;
+            margin-bottom: 0.5vw; 
         }
     </style>
 </head>
 <body>
     <div class="color-picker"></div>
-    <div class="table-container" id="table-container"></div> <script>
+    <div id="table-container"></div>
+
+    <script>
         const colorOptions = ['#f00', '#ffc0cb', '#0f0', '#800080', '#add8e6', '#00f', '#808080', '#ffa500', '#fff'];
         const tableContainer = document.getElementById('table-container');
         const colorPicker = document.querySelector('.color-picker');
