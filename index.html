@@ -53,16 +53,28 @@
             cursor: pointer;
             margin-bottom: 0.5vw; 
         }
+
+        /* Style untuk tombol Clear */
+        .clear-button {
+            background-color: #555;
+            color: white;
+            padding: 0.5vw 1vw;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 0.5vw;
+        }
     </style>
 </head>
 <body>
     <div class="color-picker"></div>
+    <button class="clear-button">Clear</button> 
     <div id="table-container"></div>
 
     <script>
         const colorOptions = ['#f00', '#ffc0cb', '#0f0', '#800080', '#add8e6', '#00f', '#808080', '#ffa500', '#fff'];
         const tableContainer = document.getElementById('table-container');
         const colorPicker = document.querySelector('.color-picker');
+        const clearButton = document.querySelector('.clear-button');
         let selectedColor = '#777'; 
 
         fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('http://128.199.67.184/'))
@@ -106,6 +118,16 @@
                 selectedColor = color;
             });
             colorPicker.appendChild(colorOption);
+        });
+
+        // Fungsi untuk tombol Clear
+        clearButton.addEventListener('click', () => {
+            const table = document.querySelector('table');
+            const cells = table.querySelectorAll('td');
+            cells.forEach(cell => {
+                cell.classList.remove('active-column');
+                cell.style.backgroundColor = ''; // Hapus warna latar belakang
+            });
         });
     </script>
 </body>
