@@ -22,6 +22,19 @@
             margin-bottom: 10px;
             color: #f00;
         }
+        .color-picker {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .color-option {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #555;
+            cursor: pointer;
+        }
         .table-container {
             overflow-x: auto;
         }
@@ -35,20 +48,55 @@
 <body>
     <div class="container">
         <h1>Paito Taiwan</h1>
+        <div class="color-picker">
+            <div class="color-option" data-color="#777"></div>
+            <div class="color-option" data-color="#f00"></div>
+            <div class="color-option" data-color="#0f0"></div>
+            <div class="color-option" data-color="#800080"></div>
+            <div class="color-option" data-color="#add8e6"></div>
+            <div class="color-option" data-color="#00f"></div>
+            <div class="color-option" data-color="#808080"></div>
+            <div class="color-option" data-color="#ffa500"></div>
+            <div class="color-option" data-color="#fff"></div>
+        </div>
         <div class="table-container">
-            <iframe id="paitoIframe" src=""></iframe> 
+            <iframe id="paitoIframe" src=""></iframe>
         </div>
 
         <script>
             const iframe = document.getElementById('paitoIframe');
+            const colorOptions = document.querySelectorAll('.color-option');
+            let selectedColor = '#777'; 
 
-            fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('http://sssaaass.free.nf/index.php')) 
+            colorOptions.forEach(option => {
+                option.style.backgroundColor = option.dataset.color;
+                option.addEventListener('click', () => {
+                    selectedColor = option.dataset.color;
+                });
+            });
+
+            fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('http://sssaaass.free.nf/index.php'))
                 .then(response => {
                     if (response.ok) return response.json()
                     throw new Error('Network response was not ok.')
                 })
                 .then(data => {
                     iframe.srcdoc = data.contents; // Menampilkan konten HTML dari respons proxy di dalam iframe
+
+                    // Menunggu iframe selesai dimuat sebelum menambahkan event listener
+                    iframe.onload = () => {
+                        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                        const table = iframeDocument.querySelector('table');
+
+                        table.addEventListener('click', (event) => {
+                            const target = event.target;
+                            if (target.tagName === 'TD') {
+                                table.querySelectorAll('td').forEach(td => td.classList.remove('active-column'));
+                                target.classList.add('active-column');
+                                target.style.backgroundColor = selectedColor;
+                            }
+                        });
+                    };
                 })
                 .catch(error => console.error('Error:', error));
         </script>
