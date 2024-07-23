@@ -3,7 +3,13 @@
 <head>
     <title>Tabel Data</title>
     <style>
-        /* Style untuk tabel (menggunakan viewport units) */
+        body {
+            background-color: #333; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
         table {
             width: 100vw; 
             max-width: 100%; 
@@ -33,16 +39,16 @@
             background-color: #444; 
         }
 
-        /* Style untuk kolom yang aktif (diklik) */
         .active-column {
             background-color: #777; 
         }
 
-        /* Style untuk pilihan warna (menggunakan flexbox) */
         .color-picker-container {
             display: flex;
             align-items: center; 
+            justify-content: center; 
             gap: 0.5vw;
+            margin-bottom: 10px; 
         }
 
         .color-picker {
@@ -51,22 +57,20 @@
             gap: 0.5vw; 
         }
 
-        .color-option {
-            width: 2vw; 
-            height: 1vw; 
+        .color-option, .clear-button { 
+            width: 4vw; 
+            height: 2vw;
             border: 1px solid #555;
             cursor: pointer;
-            margin-bottom: 0.5vw; 
+            margin-bottom: 0.5vw;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Style untuk tombol Clear */
         .clear-button {
             background-color: #555;
             color: white;
-            padding: 0.5vw 1vw;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 0.5vw;
         }
     </style>
 </head>
@@ -97,7 +101,6 @@
                 if (table) {
                     tableContainer.appendChild(table); 
 
-                    // Logika untuk mengganti warna kolom saat diklik
                     table.addEventListener('click', (event) => {
                         const target = event.target;
                         if (target.tagName === 'TD') {
@@ -115,7 +118,6 @@
                 tableContainer.textContent = "Terjadi kesalahan saat mengambil data.";
             });
 
-        // Buat pilihan warna
         colorOptions.forEach(color => {
             const colorOption = document.createElement('div');
             colorOption.classList.add('color-option');
@@ -127,7 +129,6 @@
             colorPicker.appendChild(colorOption);
         });
 
-        // Fungsi untuk tombol Clear
         clearButton.addEventListener('click', () => {
             const table = document.querySelector('table');
             const cells = table.querySelectorAll('td');
