@@ -10,27 +10,28 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0; /* Hapus margin default body */
+            margin: 0; 
         }
 
         table {
-            width: 50vw;
-            max-width: 100%;
+            width: 95%; 
+            max-width: 100%; 
             border-collapse: collapse;
             font-family: Arial, sans-serif;
             background-color: #333;
             color: white;
             margin-bottom: 20px;
-            table-layout: fixed;
+            table-layout: fixed; 
+            overflow-x: auto; 
         }
 
         th, td {
-            padding: 0.5vw;
+            padding: 8px; 
             text-align: center;
             border: 1px solid #555;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            white-space: nowrap; 
         }
 
         th {
@@ -39,34 +40,34 @@
         }
 
         tr:nth-child(even) {
-            background-color: #444;
+            background-color: #444; 
         }
 
         .active-column {
-            background-color: #777;
+            background-color: #777; 
         }
 
         .color-picker-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5vw;
-            margin-bottom: 10px;
+            align-items: center; 
+            justify-content: center; 
+            gap: 5px; 
+            margin-bottom: 10px; 
         }
 
         .color-picker {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5vw;
+            gap: 5px; 
         }
 
-        .color-option, .clear-button {
-            width: 4vw;
-            height: 2vw;
+        .color-option, .clear-button { 
+            width: 30px; 
+            height: 30px;
             border: 1px solid #555;
             cursor: pointer;
-            margin-bottom: 0.5vw;
-            display: flex;
+            margin-bottom: 5px;
+            display: flex; 
             align-items: center;
             justify-content: center;
         }
@@ -74,6 +75,17 @@
         .clear-button {
             background-color: #555;
             color: white;
+        }
+
+        /* Media query untuk layar yang sangat kecil */
+        @media (max-width: 480px) {
+            table {
+                font-size: 10px; 
+            }
+
+            th, td {
+                padding: 4px; 
+            }
         }
     </style>
 </head>
