@@ -128,7 +128,53 @@
         article strong {
             font-weight: bold;
         }
+        .navbar {
+    background-color: #555;
+    width: 100%;
+    padding: 10px 0;
+}
 
+.container {
+    max-width: 960px; /* Batasi lebar maksimum navbar */
+    margin: 0 auto; /* Pusatkan navbar secara horizontal */
+    display: flex;
+    justify-content: space-between; /* Atur jarak antara menu dan tombol toggle */
+    align-items: center;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Menu toggle (untuk perangkat mobile) */
+.menu-toggle {
+    display: none; /* Sembunyikan tombol toggle di layar besar */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+}
+            
+            
         /* Media query untuk layar yang sangat kecil */
         @media (max-width: 480px) {
             table {
@@ -143,9 +189,39 @@
                 padding: 15px; 
             }
         }
+            @media (max-width: 768px) {
+    .menu {
+        display: none; /* Sembunyikan menu di layar kecil */
+    }
+
+    .menu.active { /* Tampilkan menu saat tombol toggle diklik */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: flex; /* Tampilkan tombol toggle di layar kecil */
+    }
+}
     </style>
 </head>
 <body>
+      <nav class="navbar">
+        <div class="container">
+            <ul class="menu">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
     <h1>Paito Warna Taiwan</h1>
 
     <article>
