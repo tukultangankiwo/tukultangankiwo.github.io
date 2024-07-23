@@ -39,16 +39,21 @@
         }
 
         /* Style untuk pilihan warna (menggunakan flexbox) */
+        .color-picker-container {
+            display: flex;
+            align-items: center; 
+            gap: 0.5vw;
+        }
+
         .color-picker {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 0.5vw; 
         }
 
         .color-option {
             width: 2vw; 
-            height: 2vw;
+            height: 1vw; 
             border: 1px solid #555;
             cursor: pointer;
             margin-bottom: 0.5vw; 
@@ -66,8 +71,10 @@
     </style>
 </head>
 <body>
-    <div class="color-picker"></div>
-    <button class="clear-button">Clear</button> 
+    <div class="color-picker-container">
+        <div class="color-picker"></div>
+        <button class="clear-button">Clear</button>
+    </div>
     <div id="table-container"></div>
 
     <script>
@@ -126,7 +133,7 @@
             const cells = table.querySelectorAll('td');
             cells.forEach(cell => {
                 cell.classList.remove('active-column');
-                cell.style.backgroundColor = ''; // Hapus warna latar belakang
+                cell.style.backgroundColor = ''; 
             });
         });
     </script>
