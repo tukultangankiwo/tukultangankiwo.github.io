@@ -10,7 +10,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0; 
+            margin: 0;
         }
 
         table {
@@ -26,12 +26,12 @@
         }
 
         th, td {
-            padding: 8px; 
+            padding: 8px;
             text-align: center;
             border: 1px solid #555;
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word; /* Allow text to wrap */
         }
 
         th {
@@ -40,34 +40,34 @@
         }
 
         tr:nth-child(even) {
-            background-color: #444; 
+            background-color: #444;
         }
 
         .active-column {
-            background-color: #777; 
+            background-color: #777;
         }
 
         .color-picker-container {
             display: flex;
-            align-items: center; 
-            justify-content: center; 
-            gap: 5px; 
-            margin-bottom: 10px; 
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 10px;
         }
 
         .color-picker {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px; 
+            gap: 5px;
         }
 
-        .color-option, .clear-button { 
-            width: 30px; 
+        .color-option, .clear-button {
+            width: 30px;
             height: 30px;
             border: 1px solid #555;
             cursor: pointer;
             margin-bottom: 5px;
-            display: flex; 
+            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -80,11 +80,11 @@
         /* Media query untuk layar yang sangat kecil */
         @media (max-width: 480px) {
             table {
-                font-size: 10px; 
+                font-size: 10px;
             }
 
             th, td {
-                padding: 4px; 
+                padding: 4px;
             }
         }
     </style>
