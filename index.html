@@ -15,30 +15,30 @@
     Paito Taiwan adalah data keluaran togel Taiwan yang disusun dalam bentuk tabel. Data ini sering digunakan oleh para pemain togel untuk menganalisis pola dan memprediksi angka keluaran selanjutnya. 
   </p>
 
-  <div id="table"></div>
+  <div id="table">Loading...</div> 
 
   <script>
-    // URL TARGET
-    const url = 'http://128.199.67.184/';
+    // URL TARGET (menggunakan proxy CORS)
+    const url = 'https://cors-anywhere.herokuapp.com/http://128.199.67.184/'; 
+    // const url = 'http://128.199.67.184/'; // Jika tidak ada masalah CORS
 
     fetch(url)
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        return response.text();
+      })
       .then(html => {
-        const startMarker = "angka yang keluar.";
-        const endMarker = "Link lainnya :";
+        // Menggunakan DOMParser untuk parsing HTML dengan lebih aman
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
 
-        const startIndex = html.indexOf(startMarker) + startMarker.length;
-        const endIndex = html.indexOf(endMarker, startIndex);
-
-        if (startIndex !== -1 && endIndex !== -1) {
-          const tableHtml = html.substring(startIndex, endIndex);
-
-          // Menambahkan </table> jika belum ada
-          if (!tableHtml.includes('</table>')) {
-            tableHtml += '</table>';
-          }
-
-          document.getElementById('table').innerHTML = tableHtml;
+        // Mencari tabel berdasarkan ID atau class (lebih spesifik)
+        const table = doc.querySelector('#tabel_taiwan'); // Ganti '#tabel_taiwan' dengan ID atau class tabel yang sesuai
+        
+        if (table) {
+          document.getElementById('table').innerHTML = table.outerHTML;
         } else {
           document.getElementById('table').innerHTML = "Tabel tidak ditemukan.";
         }
