@@ -1,105 +1,47 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paito Taiwan - Hasil Keluaran Taiwan Terlengkap dan Terbaru</title>
-    <meta name="description" content="Situs ini menyediakan hasil keluaran Paito Taiwan terlengkap dan terbaru. Dapatkan informasi hasil undian Taiwan secara cepat dan akurat.">
-    <meta name="keywords" content="paito taiwan, keluaran taiwan, hasil taiwan, data taiwan, togel taiwan">
+    <title>Tabel Data</title>
     <style>
-        body {
-            font-family: monospace;
-            background-color: #121212;
-            color: #fff;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #f00;
-        }
-        .color-picker {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-        .color-option {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #555;
-            cursor: pointer;
-        }
-        .table-container {
-            overflow-x: auto;
-        }
-        iframe {
+        /* Style untuk tabel (sama seperti style.css sebelumnya) */
+        table {
             width: 100%;
-            height: 600px; /* Sesuaikan tinggi iframe sesuai kebutuhan */
-            border: none;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+            margin-bottom: 20px; 
         }
+
+        /* ... (seluruh isi style.css di sini) */
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Paito Taiwan</h1>
-        <div class="color-picker">
-            <div class="color-option" data-color="#777"></div>
-            <div class="color-option" data-color="#f00"></div>
-            <div class="color-option" data-color="#0f0"></div>
-            <div class="color-option" data-color="#800080"></div>
-            <div class="color-option" data-color="#add8e6"></div>
-            <div class="color-option" data-color="#00f"></div>
-            <div class="color-option" data-color="#808080"></div>
-            <div class="color-option" data-color="#ffa500"></div>
-            <div class="color-option" data-color="#fff"></div>
-        </div>
-        <div class="table-container">
-            <iframe id="paitoIframe" src=""></iframe>
-        </div>
+    <div class="color-picker"></div>
+    <div id="table-container"></div>
 
-        <script>
-            const iframe = document.getElementById('paitoIframe');
-            const colorOptions = document.querySelectorAll('.color-option');
-            let selectedColor = '#777'; 
+    <script>
+        // Data warna dan variabel (sama seperti script.js sebelumnya)
+        const colorOptions = ['#f00', '#ffc0cb', '#0f0', '#800080', '#add8e6', '#00f', '#808080', '#ffa500', '#fff'];
+        const tableContainer = document.getElementById('table-container');
+        const colorPicker = document.querySelector('.color-picker');
+        let selectedColor = '#777'; 
 
-            colorOptions.forEach(option => {
-                option.style.backgroundColor = option.dataset.color;
-                option.addEventListener('click', () => {
-                    selectedColor = option.dataset.color;
-                });
+        // Fetch data dan buat tabel (sama seperti script.js sebelumnya)
+        fetch('http://128.199.67.184/')
+            .then(response => response.text())
+            .then(html => {
+                // ... (seluruh isi script.js di sini)
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                tableContainer.textContent = "Terjadi kesalahan saat mengambil data.";
             });
 
-            fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('http://sssaaass.free.nf/index.php'))
-                .then(response => {
-                    if (response.ok) return response.json()
-                    throw new Error('Network response was not ok.')
-                })
-                .then(data => {
-                    iframe.srcdoc = data.contents; // Menampilkan konten HTML dari respons proxy di dalam iframe
-
-                    // Menunggu iframe selesai dimuat sebelum menambahkan event listener
-                    iframe.onload = () => {
-                        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                        const table = iframeDocument.querySelector('table');
-
-                        table.addEventListener('click', (event) => {
-                            const target = event.target;
-                            if (target.tagName === 'TD') {
-                                table.querySelectorAll('td').forEach(td => td.classList.remove('active-column'));
-                                target.classList.add('active-column');
-                                target.style.backgroundColor = selectedColor;
-                            }
-                        });
-                    };
-                })
-                .catch(error => console.error('Error:', error));
-        </script>
-    </div>
+        // Buat pilihan warna (sama seperti script.js sebelumnya)
+        colorOptions.forEach(color => {
+            // ... (seluruh isi script.js di sini)
+        });
+    </script>
 </body>
 </html>
