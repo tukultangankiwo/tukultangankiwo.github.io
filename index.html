@@ -1,53 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Paito Taiwan</title>
-  <style>
-    /* Tambahkan gaya CSS sesuai kebutuhan */
-    body { font-family: sans-serif; }
-    #table { width: 80%; margin: 20px auto; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paito Taiwan - Hasil Keluaran Taiwan Terlengkap dan Terbaru</title>
+    <meta name="description" content="Situs ini menyediakan hasil keluaran Paito Taiwan terlengkap dan terbaru. Dapatkan informasi hasil undian Taiwan secara cepat dan akurat.">
+    <meta name="keywords" content="paito taiwan, keluaran taiwan, hasil taiwan, data taiwan, togel taiwan">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .article {
+            margin-bottom: 20px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 600px;
+        }
+    </style>
 </head>
 <body>
-
-  <h2>Paito Taiwan</h2>
-  <p>
-    Paito Taiwan adalah data keluaran togel Taiwan yang disusun dalam bentuk tabel. Data ini sering digunakan oleh para pemain togel untuk menganalisis pola dan memprediksi angka keluaran selanjutnya. 
-  </p>
-
-  <div id="table">Loading...</div> 
-
-  <script>
-    // URL TARGET (menggunakan proxy CORS)
-    const url = 'https://cors-anywhere.herokuapp.com/http://128.199.67.184/'; 
-    // const url = 'http://128.199.67.184/'; // Jika tidak ada masalah CORS
-
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok.');
-        }
-        return response.text();
-      })
-      .then(html => {
-        // Menggunakan DOMParser untuk parsing HTML dengan lebih aman
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        // Mencari tabel berdasarkan ID atau class (lebih spesifik)
-        const table = doc.querySelector('#tabel_taiwan'); // Ganti '#tabel_taiwan' dengan ID atau class tabel yang sesuai
-        
-        if (table) {
-          document.getElementById('table').innerHTML = table.outerHTML;
-        } else {
-          document.getElementById('table').innerHTML = "Tabel tidak ditemukan.";
-        }
-      })
-      .catch(error => {
-        console.error('Terjadi kesalahan:', error);
-        document.getElementById('table').innerHTML = "Terjadi kesalahan saat mengambil tabel.";
-      });
-  </script>
-
+    <div class="container">
+        <h1>Paito Taiwan</h1>
+        <div class="article">
+            <h2>Hasil Keluaran Taiwan Hari Ini</h2>
+            <p>Selamat datang di situs Paito Taiwan! Di sini Anda bisa mendapatkan hasil keluaran Taiwan terbaru dan terlengkap. Kami menyediakan data Paito Taiwan yang akurat dan terpercaya untuk membantu Anda dalam menganalisis dan memprediksi angka-angka keluaran selanjutnya.</p>
+            <p>Jangan lewatkan informasi penting seputar togel Taiwan. Kunjungi situs kami setiap hari untuk mendapatkan update terbaru.</p>
+        </div>
+        <iframe src="http://sssaaass.free.nf/?i=2" width="100%" height="600px"></iframe>
+        <script>
+            // JavaScript Code (opsional)
+        </script>
+    </div>
 </body>
 </html>
