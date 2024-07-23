@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             background-color: #333;
             color: white;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
         }
 
         th {
@@ -41,6 +41,7 @@
             justify-content: center;
             align-items: center;
             gap: 5px;
+            flex-wrap: wrap; /* Pilihan warna akan pindah baris jika tidak muat */
         }
 
         .color-option {
@@ -48,14 +49,33 @@
             height: 20px;
             border: 1px solid #555;
             cursor: pointer;
+            margin-bottom: 5px; /* Tambahkan margin bawah untuk jarak antara baris pilihan warna */
+        }
+
+        /* Media query untuk perangkat mobile */
+        @media (max-width: 768px) {
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 5px;
+            }
+
+            .color-picker {
+                justify-content: flex-start; /* Rata kiri */
+            }
+        }
+
+        /* Opsional: Tambahkan overflow-x: auto untuk membuat tabel horizontal scrollable */
+        .table-container {
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
     <div class="color-picker"></div>
-    <div id="table-container"></div>
-
-    <script>
+    <div class="table-container" id="table-container"></div> <script>
         const colorOptions = ['#f00', '#ffc0cb', '#0f0', '#800080', '#add8e6', '#00f', '#808080', '#ffa500', '#fff'];
         const tableContainer = document.getElementById('table-container');
         const colorPicker = document.querySelector('.color-picker');
