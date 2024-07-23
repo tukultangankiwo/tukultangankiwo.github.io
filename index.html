@@ -25,25 +25,27 @@
             justify-content: center; 
         }
 
-        table {
-            width: 95%;
-            max-width: 100%;
-            border-collapse: collapse;
-            background-color: #333;
-            color: white;
-            margin-bottom: 20px;
-            table-layout: fixed; 
-            overflow-x: auto; 
-        }
+table {
+    width: 98%; /* Lebar tabel diatur menjadi 98% dari lebar viewport */
+    max-width: 100%; 
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: white;
+    margin-bottom: 20px;
+    table-layout: fixed; 
+    overflow-x: auto; 
+}
 
-        th, td {
-            padding: 8px; 
-            text-align: center;
-            border: 1px solid #555;
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            word-wrap: break-word; 
-        }
+th, td {
+    padding: 10px; /* Padding yang lebih besar untuk keterbacaan di layar kecil */
+    text-align: center;
+    border: 1px solid #555;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word; 
+}
+
 
         th {
             background-color: #555;
@@ -129,16 +131,16 @@
             font-weight: bold;
         }
 
-        /* Media query untuk layar yang sangat kecil */
-        @media (max-width: 480px) {
-            table {
-                font-size: 10px; 
-            }
+/* Media query untuk layar yang sangat kecil */
+@media (max-width: 480px) {
+    table {
+        font-size: 12px; /* Perkecil font sedikit untuk layar sangat kecil */
+    }
 
-            th, td {
-                padding: 4px; 
-            }
-
+    th, td {
+        padding: 6px; /* Kurangi padding sedikit untuk layar sangat kecil */
+    }
+}
             article {
                 padding: 15px; 
             }
