@@ -12,51 +12,63 @@
             background-color: #121212;
             color: #fff;
         }
+
         .container {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
         }
+
         h1 {
             text-align: center;
             margin-bottom: 10px;
             color: #f00;
         }
+
         .color-picker {
             display: flex;
             justify-content: center;
+            align-items: center;
+            gap: 5px;
             margin-bottom: 10px;
         }
+
         .color-option {
-            width: 30px;
-            height: 30px;
-            margin: 0 5px;
+            width: 20px;
+            height: 20px;
             border: 1px solid #555;
             cursor: pointer;
         }
-        .table-container { /* Container untuk tabel */
-            overflow-x: auto; /* Tambahkan scrollbar horizontal jika tabel melebihi lebar */
+
+        .table-container {
+            overflow-x: auto;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
         }
+
         th, td {
             width: calc(100% / 8);
             padding: 8px;
             text-align: center;
             border: 1px solid #555;
         }
+
         th {
             background-color: #333;
         }
+
         tr:nth-child(odd) {
             background-color: #222;
         }
+
         tr:nth-child(even) {
             background-color: #181818;
         }
+
         .active-column {
             background-color: #777;
         }
@@ -65,6 +77,7 @@
 <body>
     <div class="container">
         <h1>Paito Taiwan</h1>
+
         <div class="color-picker">
             <div class="color-option" data-color="#777"></div>
             <div class="color-option" data-color="#f00"></div>
@@ -76,36 +89,58 @@
             <div class="color-option" data-color="#ffa500"></div>
             <div class="color-option" data-color="#fff"></div>
         </div>
-        <div class="table-container">
-            </div>
 
-    <script>
-        const tableContainer = document.querySelector('.table-container');
-        const colorOptions = document.querySelectorAll('.color-option');
-        let selectedColor = '#777'; 
+        <div class="table-container"></div>
 
-        colorOptions.forEach(option => {
-            option.style.backgroundColor = option.dataset.color;
-            option.addEventListener('click', () => {
-                selectedColor = option.dataset.color;
-            });
-        });
+        <script>
+            const tableContainer = document.querySelector('.table-container');
+            const colorOptions = document.querySelectorAll('.color-option');
+            let selectedColor = '#777'; 
 
-        fetch('http://sssaaass.free.nf/?i=2')
-            .then(response => response.text())
-            .then(data => {
-                tableContainer.innerHTML = data; // Menampilkan data tabel
-                const table = tableContainer.querySelector('table');
-                table.addEventListener('click', (event) => {
-                    const target = event.target;
-                    if (target.tagName === 'TD') {
-                        table.querySelectorAll('td').forEach(td => td.classList.remove('active-column'));
-                        target.classList.add('active-column');
-                        target.style.backgroundColor = selectedColor;
-                    }
+            colorOptions.forEach(option => {
+                option.style.backgroundColor = option.dataset.color;
+                option.addEventListener('click', () => {
+                    selectedColor = option.dataset.color;
                 });
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
+            });
+
+            fetch('http://sssaaass.free.nf/paito.php') // Ganti dengan URL skrip PHP Anda
+                .then(response => response.json())
+                .then(data => {
+                    const table = document.createElement('table');
+                    
+                    // Membuat header tabel
+                    const headerRow = table.insertRow();
+                    data[0].forEach(header => { 
+                        const th = document.createElement('th');
+                        th.textContent = header;
+                        headerRow.appendChild(th);
+                    });
+
+                    // Membuat baris data
+                    for (let i = 1; i < data.length; i++) { 
+                        const row = table.insertRow();
+                        data[i].forEach(cell => {
+                            const td = document.createElement('td');
+                            td.textContent = cell;
+                            row.appendChild(td);
+                        });
+                    }
+
+                    tableContainer.appendChild(table);
+
+                    // Menambahkan event listener untuk mengubah warna kolom
+                    table.addEventListener('click', (event) => {
+                        const target = event.target;
+                        if (target.tagName === 'TD') {
+                            table.querySelectorAll('td').forEach(td => td.classList.remove('active-column'));
+                            target.classList.add('active-column');
+                            target.style.backgroundColor = selectedColor;
+                        }
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        </script>
+    </div>
 </body>
 </html>
