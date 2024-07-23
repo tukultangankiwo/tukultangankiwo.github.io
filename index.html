@@ -22,113 +22,33 @@
             margin-bottom: 10px;
             color: #f00;
         }
-        .color-picker {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-        .color-option {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #555;
-            cursor: pointer;
-        }
         .table-container {
             overflow-x: auto;
         }
-        table {
+        iframe {
             width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-        th, td {
-            width: calc(100% / 8);
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #555;
-        }
-        th {
-            background-color: #333;
-        }
-        tr:nth-child(odd) {
-            background-color: #222;
-        }
-        tr:nth-child(even) {
-            background-color: #181818;
-        }
-        .active-column {
-            background-color: #777;
+            height: 600px; /* Sesuaikan tinggi iframe sesuai kebutuhan */
+            border: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Paito Taiwan</h1>
-        <div class="color-picker">
-            <div class="color-option" data-color="#777"></div>
-            <div class="color-option" data-color="#f00"></div>
-            <div class="color-option" data-color="#0f0"></div>
-            <div class="color-option" data-color="#800080"></div>
-            <div class="color-option" data-color="#add8e6"></div>
-            <div class="color-option" data-color="#00f"></div>
-            <div class="color-option" data-color="#808080"></div>
-            <div class="color-option" data-color="#ffa500"></div>
-            <div class="color-option" data-color="#fff"></div>
+        <div class="table-container">
+            <iframe id="paitoIframe" src=""></iframe> 
         </div>
-        <div class="table-container"></div>
 
         <script>
-            const tableContainer = document.querySelector('.table-container');
-            const colorOptions = document.querySelectorAll('.color-option');
-            let selectedColor = '#777';
+            const iframe = document.getElementById('paitoIframe');
 
-            colorOptions.forEach(option => {
-                option.style.backgroundColor = option.dataset.color;
-                option.addEventListener('click', () => {
-                    selectedColor = option.dataset.color;
-                });
-            });
-
-            fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('http://sssaaass.free.nf/index.php'))
+            fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('http://sssaaass.free.nf/index.php')) 
                 .then(response => {
                     if (response.ok) return response.json()
                     throw new Error('Network response was not ok.')
                 })
                 .then(data => {
-                    const tableData = JSON.parse(data.contents); // Mengambil data JSON dari respons proxy
-                    const table = document.createElement('table');
-
-                    // Membuat header tabel
-                    const headerRow = table.insertRow();
-                    tableData[0].forEach(header => {
-                        const th = document.createElement('th');
-                        th.textContent = header;
-                        headerRow.appendChild(th);
-                    });
-
-                    // Membuat baris data
-                    for (let i = 1; i < tableData.length; i++) {
-                        const row = table.insertRow();
-                        tableData[i].forEach(cell => {
-                            const td = document.createElement('td');
-                            td.textContent = cell;
-                            row.appendChild(td);
-                        });
-                    }
-
-                    tableContainer.appendChild(table);
-
-                    // Menambahkan event listener untuk mengubah warna kolom
-                    table.addEventListener('click', (event) => {
-                        const target = event.target;
-                        if (target.tagName === 'TD') {
-                            table.querySelectorAll('td').forEach(td => td.classList.remove('active-column'));
-                            target.classList.add('active-column');
-                            target.style.backgroundColor = selectedColor;
-                        }
-                    });
+                    iframe.srcdoc = data.contents; // Menampilkan konten HTML dari respons proxy di dalam iframe
                 })
                 .catch(error => console.error('Error:', error));
         </script>
